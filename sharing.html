@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Social Media</title>
+        <style>
+        body {
+            font-family: Ariel, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="share-media">Share this post</div>
+        <button id="socialShareBtn">Share Now!</button>
+
+        <script>
+            const shareButton = document.getElementById('socialShareBtn');
+            shareButton.addEventListener('click', () => {
+                //check to see if the web share api is supported
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Click me',
+                        text: 'Something you would like',
+                        url: window.location.href //sharing the current URL
+                    })
+                    .then(() => console.log('content shared!!'))
+                    .catch(err => console.error('Error Sharing 504', err));
+                } else {
+                    alert('Web sharing API is not supported for this browser');
+                }
+            });
+        </script>
+    </body>
+</html>
